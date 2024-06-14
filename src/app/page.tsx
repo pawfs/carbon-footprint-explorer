@@ -1,3 +1,5 @@
+import ComboBox from "./_components/ComboBox";
+
 export default async function Home() {
 
   return (
@@ -7,7 +9,7 @@ export default async function Home() {
           Carbon Footprint Explorer
         </h1>
         <div className="grid">
-          
+          <ComboBox />
         </div>
       </div>
     </main>
