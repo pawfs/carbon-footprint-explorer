@@ -1,5 +1,7 @@
 import { env } from "process";
 
+import { EmissionFactorSearchResult } from "~/app/types";
+
 type Payload = {
   query: string;
 };
@@ -22,7 +24,7 @@ export async function POST(request: Request) {
     }
   );
 
-  const data = await response.json();
+  const data = (await response.json()) as EmissionFactorSearchResult;
 
   console.log(data);
 

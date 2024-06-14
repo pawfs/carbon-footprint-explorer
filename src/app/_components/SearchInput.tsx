@@ -1,8 +1,8 @@
 "use client";
 
-import { on } from "events";
 import { Search, X } from "lucide-react";
 import { useState } from "react";
+import { EmissionFactorSearchResult } from "../types";
 
 export default function SearchInput() {
 
@@ -16,7 +16,7 @@ export default function SearchInput() {
       method: "POST",
       body: JSON.stringify({ query }),
     });
-    const data = await response.json();
+    const data = (await response.json()) as EmissionFactorSearchResult;
     console.log(data.results);
   }
 
