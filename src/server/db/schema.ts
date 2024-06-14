@@ -3,6 +3,7 @@
 
 import { sql } from "drizzle-orm";
 import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
+import { EmissionFactor } from "~/app/types";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -10,10 +11,12 @@ import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = sqliteTableCreator((name) => `carbon-footprint-explorer_${name}`);
+export const createTable = sqliteTableCreator(
+  (name) => `carbon-footprint-explorer_${name}`
+);
 
-export const posts = createTable(
-  "post",
+export const bookmarks = createTable(
+  "bookmarks",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { length: 256 }),
@@ -21,8 +24,9 @@ export const posts = createTable(
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: int("updatedAt", { mode: "timestamp" }),
+    text: text("text", { mode: "json" }).$type<EmissionFactor>(),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
-  })
+  }),
 );

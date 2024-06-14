@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
   const data = (await response.json()) as EmissionFactorSearchResult;
 
-  console.log(data);
+  //console.log(data);
 
   if (!data) {
     return Response.json({ error: "No results found" });
